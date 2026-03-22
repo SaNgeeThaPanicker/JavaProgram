@@ -1,39 +1,39 @@
-import java.util.ArrayList;
-
-
 public class PermutationOnGivenString {
     public static void main(String[] args) {
-        String str = "abc";
-        System.out.println("Permutations of the string: ");
-        char [] c = str.toCharArray();
-        ArrayList<String> permutations = new ArrayList<>();
-        for(int i = 0; i < c.length; i++){
-            for(int j = 0; j < c.length; j++){
-                for(int k = 0; k < c.length; k++){
-                    if(i != j && j != k && i != k){
-                        String perm = "" + c[i] + c[j] + c[k];
-                        permutations.add(perm);
-                    }
-                }
+        String str = "ABC";
+        System.out.println("Permutations of " + str + ":");
+        findPermutations(str, 0, str.length() - 1);
+    }
+
+    /**
+     * Recursive function to find permutations
+     * @param str - The string to permute
+     * @param left - Starting index
+     * @param right - Ending index
+     */
+    private static void findPermutations(String str, int left, int right) {
+        if (left == right) {
+            System.out.println(str);
+        } else {
+            for (int i = left; i <= right; i++) {
+                // Swap the current character to the "fixed" position
+                str = swap(str, left, i);
+                
+                // Recursively call for the remaining characters
+                findPermutations(str, left + 1, right);
+                
+                // Backtrack: Swap back to restore the original string for the next loop
+                str = swap(str, left, i);
             }
         }
-        System.out.println(permutations);
-
-        // Using substring and recursion
-        String RecursiveString = "abc"; permute(RecursiveString, "");
-         
-    }
-    static void permute(String str, String prefix) { 
-        if (str.length() == 0) 
-            { System.out.println(prefix); 
-            } 
-        else { 
-            for (int i = 0; i < str.length(); i++) 
-                { 
-                    String rem = str.substring(0,i) + str.substring(i+1); 
-                    permute(rem,prefix + str.charAt(i)); 
-                } 
-            }
     }
 
+    // Helper method to swap characters in a string
+    private static String swap(String a, int i, int j) {
+        char[] charArray = a.toCharArray();
+        char temp = charArray[i];
+        charArray[i] = charArray[j];
+        charArray[j] = temp;
+        return String.valueOf(charArray);
+    }
 }
