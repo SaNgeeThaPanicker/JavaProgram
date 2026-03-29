@@ -12,6 +12,7 @@ public class StringQuestions {
         countVowelsAndConsonantsInAString("hello world this is java");
     }
 
+    
     public static void countVowelsAndConsonantsInAString(String str){
         char[] characters = str.toCharArray();
         int vowelCount = 0;
