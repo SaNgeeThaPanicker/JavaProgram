@@ -1,4 +1,4 @@
-package Practise;
+
 
 public class CountVowelsAndConstantsInAString {
     public static void countVowelsAndConstantsInAString(String str) {
